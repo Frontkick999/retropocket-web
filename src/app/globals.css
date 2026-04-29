@@ -24,3 +24,35 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ========================================================== */
+/* Sistema di Particelle Neon (Cyber-90s Rise)               */
+/* ========================================================== */
+
+/* Animazione principale: sale e svanisce */
+@keyframes particleRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* Appare velocemente */
+  }
+  90% {
+    opacity: 1; /* Rimane visibile */
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.5); /* Sale di tutta l'altezza e si rimpicciolisce */
+    opacity: 0; /* Svanisce */
+  }
+}
+
+/* Classe base per le particelle */
+.particle {
+  position: absolute;
+  bottom: -20px; /* Parte appena sotto lo schermo */
+  border-radius: 2px; /* Leggermente arrotondate per sembrare pixel neon */
+  filter: blur(1px); /* Un tocco di sfocatura per l'effetto luce */
+  animation: particleRise infinite linear; /* Animazione infinita e lineare */
+  opacity: 0; /* Invisibile di base */
+}
