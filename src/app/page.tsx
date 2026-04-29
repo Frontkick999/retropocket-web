@@ -207,7 +207,7 @@ export default function Home() {
         {romLibrary.map((game) => (
           <div 
             key={game.id} 
-            className="group relative bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 flex flex-col hover:-translate-y-3 hover:border-purple-400/50 hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.4)]"
+            className="group relative bg-white/[0.06] border border-white/[0.08] backdrop-blur-xl rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 flex flex-col hover:-translate-y-3 hover:border-purple-400/50 hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.4)]"
           >
             {/* Immagine con gestione intelligente Mobile/Desktop */}
             <div className="relative aspect-square overflow-hidden bg-black/60">
