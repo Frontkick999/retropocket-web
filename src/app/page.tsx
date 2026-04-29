@@ -143,51 +143,59 @@ const romLibrary = [
 
 export default function Home() {
   return (
-    // p-2 su mobile, p-8 da schermi sm in su
-    <main className="min-h-screen bg-gray-950 text-gray-200 p-2 sm:p-8 font-sans">
+    <main className="relative min-h-screen text-gray-200 p-2 sm:p-8 font-sans selection:bg-purple-500/30 overflow-hidden">
       
-      {/* Header scalabile */}
-      <header className="max-w-screen-2xl mx-auto mb-8 sm:mb-16 mt-4 sm:mt-8 text-center">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-2 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 italic tracking-tight">
-          RETROPOCKET
+      {/* 1. SFONDO IMMERSIVO (Fisso sotto la pagina) */}
+      <div className="fixed inset-0 -z-20 bg-[#05050A]"></div>
+      
+      {/* 2. SFERE DI LUCE AL NEON (Fisse) */}
+      <div className="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-700/20 blur-[120px] -z-10 pointer-events-none"></div>
+      <div className="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-700/20 blur-[120px] -z-10 pointer-events-none"></div>
+      <div className="fixed top-[40%] left-[40%] w-[30vw] h-[30vw] rounded-full bg-fuchsia-600/10 blur-[150px] -z-10 pointer-events-none"></div>
+
+      {/* Header Premium */}
+      <header className="relative max-w-screen-2xl mx-auto mb-12 sm:mb-20 mt-6 sm:mt-12 text-center z-10">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-2 tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-100 to-gray-500 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+          RETRO<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]">POCKET</span>
         </h1>
-        <p className="text-gray-400 text-[10px] sm:text-lg md:text-xl uppercase tracking-[0.2em] sm:tracking-[0.3em] font-semibold">
+        <p className="text-purple-300 text-[10px] sm:text-sm md:text-base uppercase tracking-[0.6em] sm:tracking-[0.8em] font-bold mt-4 opacity-80">
           Personal ROM Vault
         </p>
       </header>
 
-      {/* Griglia Mobile First: 3 colonne di base, poi 4, 5 e 6 sui monitor più grandi */}
-      <div className="max-w-screen-2xl mx-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-6">
+      {/* Griglia Giochi (Glassmorphism Puro) */}
+      <div className="relative z-10 max-w-screen-2xl mx-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-6 pb-20">
         {romLibrary.map((game) => (
           <div 
             key={game.id} 
-            className="group bg-gray-900 border border-gray-800 rounded-lg sm:rounded-2xl overflow-hidden hover:border-purple-500 transition-all duration-500 shadow-xl flex flex-col hover:-translate-y-1"
+            className="group relative bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 flex flex-col hover:-translate-y-3 hover:border-purple-400/50 hover:shadow-[0_15px_40px_-10px_rgba(168,85,247,0.4)]"
           >
-            {/* Contenitore Immagine */}
-            <div className="relative aspect-square overflow-hidden bg-gray-950 border-b border-gray-800">
+            {/* Immagine con bagliore interno */}
+            <div className="relative aspect-square overflow-hidden bg-black/60">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05050A] via-transparent to-white/5 z-10 opacity-80"></div>
               <img 
                 src={`/images/${game.imageName}`} 
                 alt={game.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
               />
-              <div className="absolute top-1 sm:top-2 right-1 sm:right-2">
-                {/* Badge GBC minuscolo su mobile */}
-                <span className="bg-black/80 backdrop-blur-md text-purple-400 text-[7px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded sm:rounded-md border border-purple-500/30 uppercase tracking-wider">
+              <div className="absolute top-2 right-2 z-20">
+                <span className="bg-black/50 backdrop-blur-md text-cyan-400 text-[8px] sm:text-[10px] font-bold px-2 py-1 rounded-md border border-cyan-500/20 uppercase tracking-widest shadow-lg">
                   GBC
                 </span>
               </div>
             </div>
 
-            {/* Dettagli Gioco ultra-compatti su mobile */}
-            <div className="p-2 sm:p-4 flex flex-col flex-grow justify-between items-center text-center">
-              <h2 className="text-[9px] sm:text-sm md:text-base font-bold text-gray-100 mb-2 sm:mb-4 group-hover:text-purple-400 transition-colors line-clamp-2 leading-tight">
+            {/* Dettagli & Download Glass Button */}
+            <div className="p-3 sm:p-5 flex flex-col flex-grow justify-between items-center text-center relative z-20">
+              <h2 className="text-[10px] sm:text-sm font-bold text-gray-300 mb-4 group-hover:text-white transition-colors line-clamp-2 leading-snug drop-shadow-md">
                 {game.title}
               </h2>
               
               <a 
                 href={`/roms/${game.fileName}`} 
                 download
-                className="w-full block text-center bg-gray-800 text-white hover:bg-purple-600 font-bold py-1.5 sm:py-2.5 px-1 sm:px-4 rounded-md sm:rounded-xl transition-all duration-300 transform active:scale-95 text-[8px] sm:text-xs md:text-sm tracking-wide"
+                className="w-full block text-center bg-white/[0.05] backdrop-blur-sm border border-white/10 text-gray-300 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:border-transparent group-hover:text-white font-bold py-2.5 sm:py-3 px-2 sm:px-4 rounded-lg sm:rounded-xl transition-all duration-300 transform active:scale-95 text-[9px] sm:text-xs tracking-widest uppercase shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.6)]"
               >
                 DOWNLOAD
               </a>
