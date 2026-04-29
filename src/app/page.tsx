@@ -88,7 +88,7 @@ const romLibrary = [
   {
     id: 15,
     title: "Pokémon Yellow Version",
-    fileName: "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB SGB Enhanced).gbc",
+    fileName: "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB SGB Enhanced).gb",
     imageName: "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB SGB Enhanced).jpg"
   },
   {
